@@ -355,6 +355,7 @@ const FALLBACK_CONTACT = {
   socials: {
     linkedin:  "https://www.linkedin.com/in/iqra-zakir-000981378",
     instagram: "https://www.instagram.com/iqra_design_",
+    github:    "https://github.com/iqrazakir90",
   },
 };
 
