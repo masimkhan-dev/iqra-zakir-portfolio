@@ -43,12 +43,19 @@ const ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
 
 /* ── Illustration map for services ── */
 const SVC_ILLUSTRATIONS: Record<string, string> = {
-  "Graphic Design":   "/svc-graphic.png",
-  "Illustration":     "/svc-illustration.png",
-  "Web Development":  "/svc-webdev.png",
-  "Brand Identity":   "/svc-brand.png",
-  "UI/UX Design":     "/svc-uiux.png",
-  "Logo Design":      "/svc-logo.png",
+  // DB service names
+  "Full Stack Development": "/svc-fullstack.png",
+  "UI/UX Design":           "/svc-uiux.png",
+  "Brand Identity":         "/svc-brand.png",
+  "Landing Pages":          "/svc-landing.png",
+  "Admin Dashboards":       "/svc-admin.png",
+  "Graphic Design":         "/svc-graphic.png",
+  // Fallback / legacy names
+  "Illustration":           "/svc-illustration.png",
+  "Web Development":        "/svc-fullstack.png",
+  "Logo Design":            "/svc-brand.png",
+  "Social Media Design":    "/svc-graphic.png",
+  "Poster & Banner Design": "/svc-graphic.png",
 };
 
 /* ── Fade-up animation preset ── */
