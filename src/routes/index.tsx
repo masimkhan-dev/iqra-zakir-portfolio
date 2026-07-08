@@ -15,7 +15,7 @@ import { Textarea } from "@/components/ui/textarea";
 import heroImg from "@/assets/herimg.jpeg";
 import {
   ArrowUpRight, Download, Github, Linkedin, Instagram,
-  Mail, MapPin, Phone, Send, Menu, X, Dribbble, Twitter,
+  Mail, MapPin, Phone, Send, Menu, X, Dribbble, Tiktok,
   Code2, Palette, Sparkles, LayoutTemplate, LayoutDashboard,
   Image as ImageIcon, ShoppingCart, Server, Brush,
 } from "lucide-react";
@@ -358,6 +358,7 @@ const FALLBACK_CONTACT = {
     linkedin:  "https://www.linkedin.com/in/iqra-zakir-000981378",
     instagram: "https://www.instagram.com/iqra_design_",
     github:    "https://github.com/iqrazakir90",
+    tiktok:    "https://www.tiktok.com/@iqra_design_",
   },
 };
 
@@ -620,7 +621,7 @@ function Footer() {
   };
 
   const socials = [
-    { href: c?.socials?.twitter,   Icon: Twitter,   label: "X / Twitter" },
+    { href: c?.socials?.tiktok,    Icon: Tiktok,    label: "TikTok" },
     { href: c?.socials?.linkedin,  Icon: Linkedin,  label: "LinkedIn" },
     { href: c?.socials?.instagram, Icon: Instagram, label: "Instagram" },
     { href: c?.socials?.github,    Icon: Github,    label: "GitHub" },
