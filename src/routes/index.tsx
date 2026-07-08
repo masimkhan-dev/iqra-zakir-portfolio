@@ -347,6 +347,17 @@ function Hero() {
 /* ══════════════════════════════════════════
    SERVICES
 ══════════════════════════════════════════ */
+/* ── Fallback contact (always shown if Supabase is empty) ── */
+const FALLBACK_CONTACT = {
+  email:    "iqrazakir455@gmail.com",
+  phone:    "",
+  location: "Pakistan",
+  socials: {
+    linkedin:  "https://www.linkedin.com/in/iqra-zakir-000981378",
+    instagram: "https://www.instagram.com/iqra_design_",
+  },
+};
+
 function Services() {
   const { data } = useSuspenseQuery(servicesQuery);
 
@@ -491,7 +502,11 @@ type ContactForm = z.infer<typeof contactSchema>;
 
 function Contact() {
   const { data } = useSuspenseQuery(siteContentQuery);
-  const c = data.contact;
+  const c = {
+    ...FALLBACK_CONTACT,
+    ...data.contact,
+    socials: { ...FALLBACK_CONTACT.socials, ...(data.contact?.socials ?? {}) },
+  };
   const { register, handleSubmit, reset, formState: { errors, isSubmitting } } =
     useForm<ContactForm>({ resolver: zodResolver(contactSchema) });
 
@@ -595,7 +610,11 @@ function Contact() {
 ══════════════════════════════════════════ */
 function Footer() {
   const { data } = useSuspenseQuery(siteContentQuery);
-  const c = data.contact;
+  const c = {
+    ...FALLBACK_CONTACT,
+    ...data.contact,
+    socials: { ...FALLBACK_CONTACT.socials, ...(data.contact?.socials ?? {}) },
+  };
 
   const socials = [
     { href: c?.socials?.twitter,   Icon: Twitter,   label: "X / Twitter" },
