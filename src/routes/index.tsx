@@ -264,39 +264,12 @@ function Hero() {
       <div className="absolute bottom-0 right-1/4 w-64 h-64 rounded-full pointer-events-none"
         style={{ background: `radial-gradient(circle, ${C.lilac}44 0%, transparent 70%)`, transform: "translateY(40%)" }} />
 
-      <div className="relative mx-auto max-w-6xl px-5 sm:px-8 grid md:grid-cols-2 gap-0 items-center min-h-[calc(100vh-4rem)]">
+      <div className="relative mx-auto max-w-6xl px-5 sm:px-8 flex flex-col-reverse md:grid md:grid-cols-2 gap-8 md:gap-0 items-center justify-center min-h-[calc(100vh-4rem)] py-10 md:py-0">
 
-        {/* LEFT — Portrait */}
-        <motion.div
-          initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="relative flex items-end justify-center pt-10 md:pt-0"
-        >
-          <div className="relative" style={{ width: "min(340px, 90vw)", aspectRatio: "3/4" }}>
-            {/* Plum offset frame */}
-            <div className="absolute rounded-2xl"
-              style={{
-                background: `linear-gradient(135deg, ${C.plum}, ${C.plumMid})`,
-                inset: 0, transform: "translate(14px, 14px)", zIndex: 0,
-              }} />
-            {/* Lavender decorative dot */}
-            <div className="absolute rounded-full"
-              style={{ width: 60, height: 60, background: C.lavender, top: -20, right: -20, zIndex: 0, opacity: 0.8 }} />
-            {/* Photo */}
-            <img
-              src={heroImg}
-              alt="Iqra Zakir"
-              loading="eager"
-              className="relative w-full h-full object-cover object-top rounded-2xl"
-              style={{ zIndex: 1, boxShadow: `0 24px 64px rgba(91,26,138,0.28)` }}
-            />
-          </div>
-        </motion.div>
-
-        {/* RIGHT — Text */}
-        <div className="py-12 md:py-16 md:pl-14 flex flex-col justify-center">
+        {/* LEFT — Text (Now on left in grid, but bottom/first flow in flex) */}
+        <div className="flex flex-col justify-center text-center md:text-left items-center md:items-start w-full">
           {/* Role pill */}
-          <motion.div {...fadeUp(0.05)}>
+          <motion.div {...fadeUp(0.05)} style={{ willChange: "transform, opacity" }}>
             <AnimatePresence mode="wait">
               <motion.span
                 key={roleIdx}
@@ -310,8 +283,8 @@ function Hero() {
           </motion.div>
 
           {/* Heading */}
-          <motion.div {...fadeUp(0.1)} className="mt-5">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight" style={{ color: C.ink }}>
+          <motion.div {...fadeUp(0.1)} className="mt-5" style={{ willChange: "transform, opacity" }}>
+            <h1 className="text-3.5xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight" style={{ color: C.ink }}>
               Hi there, I'm
               <br />
               <span style={{ color: C.plum }}>{hero.name ?? "Iqra Zakir"}!</span>
@@ -320,25 +293,54 @@ function Hero() {
 
           {/* Tagline */}
           <motion.p {...fadeUp(0.15)}
-            className="mt-5 text-base md:text-lg leading-relaxed max-w-md"
-            style={{ color: C.muted }}>
+            className="mt-4 text-sm sm:text-base md:text-lg leading-relaxed max-w-md"
+            style={{ color: C.muted, willChange: "transform, opacity" }}>
             {hero.tagline}
           </motion.p>
 
           {/* Buttons */}
-          <motion.div {...fadeUp(0.2)} className="mt-8 flex flex-wrap gap-3">
-            <a href="#contact" className="btn-purple">
+          <motion.div {...fadeUp(0.2)} className="mt-6 sm:mt-8 flex flex-wrap justify-center md:justify-start gap-3 w-full sm:w-auto" style={{ willChange: "transform, opacity" }}>
+            <a href="#contact" className="btn-purple text-center justify-center">
               Hire Me <ArrowUpRight className="h-4 w-4" />
             </a>
             {hero.resume_url ? (
-              <a href={hero.resume_url} target="_blank" rel="noreferrer" className="btn-outline">
+              <a href={hero.resume_url} target="_blank" rel="noreferrer" className="btn-outline text-center justify-center">
                 Download CV <Download className="h-4 w-4" />
               </a>
             ) : (
-              <a href="#work" className="btn-outline">View Projects</a>
+              <a href="#work" className="btn-outline text-center justify-center">View Projects</a>
             )}
           </motion.div>
         </div>
+
+        {/* RIGHT — Portrait (Now on right in grid, but top/second flow in flex) */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="relative flex items-center justify-center w-full"
+          style={{ willChange: "transform, opacity" }}
+        >
+          <div className="relative" style={{ width: "min(280px, 75vw)", md: "min(340px, 90vw)", aspectRatio: "3/4" }}>
+            {/* Plum offset frame */}
+            <div className="absolute rounded-2xl"
+              style={{
+                background: `linear-gradient(135deg, ${C.plum}, ${C.plumMid})`,
+                inset: 0, transform: "translate(10px, 10px)", zIndex: 0,
+              }} />
+            {/* Lavender decorative dot */}
+            <div className="absolute rounded-full"
+              style={{ width: 45, height: 45, background: C.lavender, top: -15, right: -15, zIndex: 0, opacity: 0.8 }} />
+            {/* Photo */}
+            <img
+              src={heroImg}
+              alt="Iqra Zakir"
+              loading="eager"
+              className="relative w-full h-full object-cover object-top rounded-2xl"
+              style={{ zIndex: 1, boxShadow: `0 20px 48px rgba(91,26,138,0.22)` }}
+            />
+          </div>
+        </motion.div>
+
       </div>
     </section>
   );
@@ -379,7 +381,7 @@ function Services() {
     <section id="services" className="py-16 md:py-20"
       style={{ background: `linear-gradient(180deg, ${C.lavBg} 0%, #EFE5FF 100%)` }}>
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        <motion.div {...fadeUp()}>
+        <motion.div {...fadeUp()} style={{ willChange: "transform, opacity" }}>
           <div className="section-underline" />
           <h2 className="text-3xl md:text-4xl font-bold" style={{ color: C.ink }}>What I Do</h2>
           <p className="mt-3 max-w-xl" style={{ color: C.muted }}>
@@ -392,13 +394,13 @@ function Services() {
             const Icon = ICONS[s.icon ?? ""] ?? Sparkles;
             const illustration = s.illustration_url ?? SVC_ILLUSTRATIONS[s.title];
             return (
-              <motion.div key={s.id} {...fadeUp(i * 0.06)} className="portfolio-card p-6 group cursor-default">
+              <motion.div key={s.id} {...fadeUp(i * 0.06)} style={{ willChange: "transform, opacity" }} className="portfolio-card p-6 group cursor-default">
                 <h3 className="font-bold text-lg" style={{ color: C.ink }}>{s.title}</h3>
                 <p className="text-sm mt-1 leading-relaxed" style={{ color: C.muted }}>{s.description}</p>
                 <div className="mt-4 h-36 flex items-center justify-center rounded-xl overflow-hidden"
                   style={{ background: C.lavLight }}>
                   {illustration ? (
-                    <img src={illustration} alt={s.title}
+                    <img src={illustration} alt={s.title} loading="lazy"
                       className="h-full w-full object-contain p-3 group-hover:scale-105 transition-transform duration-300" />
                   ) : (
                     <Icon className="h-16 w-16" style={{ color: C.lilac }} />
@@ -426,9 +428,9 @@ function Projects() {
   const shown = showAll ? filtered : filtered.slice(0, 6);
 
   return (
-    <section id="work" className="py-16 md:py-20" style={{ background: C.lavBg }}>
+    <section id="work" className="py-12 md:py-20" style={{ background: C.lavBg }}>
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        <motion.div {...fadeUp()} className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+        <motion.div {...fadeUp()} style={{ willChange: "transform, opacity" }} className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
           <div>
             <div className="section-underline" />
             <h2 className="text-3xl md:text-4xl font-bold" style={{ color: C.ink }}>My Projects</h2>
@@ -436,7 +438,7 @@ function Projects() {
           <div className="flex flex-wrap gap-2">
             {cats.map(c => (
               <button key={c} onClick={() => { setCat(c); setShowAll(false); }}
-                className="text-xs font-semibold px-4 py-1.5 rounded-full border transition-all"
+                className="text-xs font-semibold px-4 py-1.5 rounded-full border transition-all cursor-pointer"
                 style={cat === c
                   ? { background: `linear-gradient(135deg, ${C.plum}, ${C.plumMid})`, color: "#fff", borderColor: C.plum }
                   : { background: "transparent", color: C.muted, borderColor: C.border }
@@ -445,12 +447,12 @@ function Projects() {
           </div>
         </motion.div>
 
-        <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="mt-8 md:mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {shown.map((p, i) => (
-            <motion.article key={p.id} {...fadeUp(i * 0.05)} className="portfolio-card overflow-hidden group">
+            <motion.article key={p.id} {...fadeUp(i * 0.04)} style={{ willChange: "transform, opacity" }} className="portfolio-card overflow-hidden group">
               <div className="aspect-[4/3] relative overflow-hidden" style={{ background: C.lavLight }}>
                 {p.cover_url ? (
-                  <img src={p.cover_url} alt={p.title}
+                  <img src={p.cover_url} alt={p.title} loading="lazy"
                     className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 ) : (
                   <div className="absolute inset-0 grid place-items-center text-6xl font-bold"
